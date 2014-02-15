@@ -36,8 +36,8 @@ $rem-base: 18px;
 // $total-columns: 12;
 
 // We use these to control various global styles
-// $body-bg: #fff;
-// $body-font-color: #222;
+$body-bg: #323232;
+$body-font-color: #bed882;
 // $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
@@ -51,10 +51,10 @@ $rem-base: 18px;
 // $default-float: left;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
-// $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
-// $success-color: #43AC6A;
+$primary-color: #40c8d1;
+$secondary-color: #3b3b3b;
+$alert-color: #c25232;
+$success-color: #7ab936;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
 
@@ -116,7 +116,7 @@ $rem-base: 18px;
 // $header-font-family: $body-font-family;
 // $header-font-weight: 300;
 // $header-font-style: normal;
-// $header-font-color: #222;
+$header-font-color: #bed882;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
@@ -762,7 +762,7 @@ $rem-base: 18px;
 // $include-html-panel-classes: $include-html-classes;
 
 // We use these to control the background and border styles
-// $panel-bg: scale-color(#fff, $lightness: -5%);
+$panel-bg: $secondary-color;
 // $panel-border-style: solid;
 // $panel-border-size: 1px;
 
@@ -775,7 +775,7 @@ $rem-base: 18px;
 // $panel-padding: rem-calc(20);
 
 // We use these to set default font colors
-// $panel-font-color: #333;
+$panel-font-color: #bed882;
 // $panel-font-color-alt: #fff;
 
 // $panel-header-adjust: true;
