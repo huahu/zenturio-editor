@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row wide">
+  <div class="columns large-12 panel alternative">
+    <button class="button radius tiny right" style="margin: 10px;" onclick="toggleInfoBlock();"><i class="fi-alert"></i></button>
+    <h2>
+      <i class="fi-thumbnails" data-tooltip class="has-tip" title="/var/zenturio/zenturio-editor"></i> zenturio-editor
+    </h2>
+  </div>
+</div>
+
+<div class="row wide">
+  <div class="columns large-8 left-side">
+    {% for item in items %}
+      {% if item.type == 'dir' %}
+        {% include "_dir.html" with {model:item} %}
+      {% else %}
+        {% include "_file.html" with {model:item} %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="columns large-4 right-side">
+    <div class="panel">
+      <h3>Zenturio Editor</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, placeat, aliquam dignissimos quidem natus tempore ut dolorum ipsa veniam eveniet.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores officia quae ex sapiente dolorem exercitationem.</p>
+
+      <p>View on <a href="https://github.com/zenturio-solutions/zenturio-editor" target="_blank">GitHub</a></p>
+      <hr>
+      <p>We using this amazing editor in our work at <a href="#">Zenturio Solutions</a>.</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,7 +1,18 @@
 @import "settings";
 @import "../vendor/foundation/scss/foundation";
 
-
-.row {
+.row.wide {
   min-width: 100%;
+}
+
+.inner-dir {
+  padding-left: 4%;
+}
+
+.panel.alternative {
+  padding: 0.3em 1em;
+}
+
+.hoverable:hover {
+  background-color: $secondary-color;
 }

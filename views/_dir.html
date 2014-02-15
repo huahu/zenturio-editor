@@ -1,0 +1,19 @@
+<div class="row hoverable">
+  <div class="columns large-12">
+    <h5><i class="fi-folder"></i> {{ model.title }}</h5>
+  </div>
+</div>
+
+{% if model.items %}
+<div class="row">
+  <div class="columns large-12 inner-dir">
+    {% for item in model.items %}
+      {% if item.type == 'dir' %}
+        {% include "_dir.html" with {model:item} %}
+      {% else %}
+        {% include "_file.html" with {model:item} %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

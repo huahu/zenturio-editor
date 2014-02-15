@@ -1,13 +1,15 @@
-<% include _header %>
+{% extends "layout.html" %}
 
-<div class="row">
+{% block content %}
+
+<div class="row wide">
   <div class="columns large-12">
     <h1>Zenturio Editor</h1>
     <p>Editor</p>
   </div>
 </div>
 
-<div class="row">
+<div class="row wide">
   <div class="columns large-12">
     <div class="panel">
 <div id="editor" style="display: block; width: 100%; height: 400px;">function foo(items) {
@@ -25,4 +27,4 @@
     editor.getSession().setMode("ace/mode/javascript");
 </script>
 
-<% include _footer %>
+{% endblock %}

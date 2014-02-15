@@ -2,7 +2,7 @@
   "name": "zenturio-editor",
   "version": "1.0.0",
   "description": "Web editor based on Ace",
-  "main": "zenturio-editor.js",
+  "main": "zenturio-editor",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/zenturio-solutions/zenturio-editor",
   "dependencies": {
-    "ejs": "~0.8.5",
-    "express": "~3.4.8"
+    "express": "~3.4.8",
+    "swig": "~1.3.2"
   }
 }

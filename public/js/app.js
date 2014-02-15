@@ -5,3 +5,10 @@ var zenturioEditor = angular.module('zenturio-editor', []);
 $(function() {
   $(document).foundation();
 });
+
+function toggleInfoBlock() {
+  $('.left-side').toggleClass('large-8');
+  $('.left-side').toggleClass('large-12');
+
+  $('.right-side').toggle();
+}
