@@ -15,6 +15,8 @@ swig.setDefaults({
   cache: false
 });
 
+app.use(express.urlencoded());
+
 var coreDir = process.cwd();
 var coreParentDir = path.dirname(coreDir);
 
@@ -109,6 +111,34 @@ app.get('/raw', function(req, res) {
   }
 
 });
+
+app.post('/create-dir', function(req, res) {
+  var fullPath = coreParentDir + req.body.subpath;
+
+  if (!fs.existsSync(fullPath)) {
+    res.send(404, "404 Error. " + fullPath);
+    return;
+  }
+
+  fullPath += '/' + req.body.name;
+  fs.mkdirSync(fullPath);
+
+  res.send('Directory ' + fullPath + ' created');
+})
+
+app.post('/create-file', function(req, res) {
+  var fullPath = coreParentDir + req.body.subpath;
+
+  if (!fs.existsSync(fullPath)) {
+    res.send(404, "404 Error. " + fullPath);
+    return;
+  }
+
+  fullPath += '/' + req.body.name;
+  fs.openSync(fullPath, 'w')
+
+  res.send('File ' + fullPath + ' created');
+})
 
 
 app.get('/editor', function(req, res) {

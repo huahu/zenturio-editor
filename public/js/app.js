@@ -17,8 +17,8 @@ function toggleInfoBlock() {
 
 var loadedIds = [];
 
-function loadTree(id, subpath) {
-  if (loadedIds[id]) {
+function loadTree(id, subpath, ignoreCached) {
+  if (loadedIds[id] && !ignoreCached) {
     $('#rowModelFiles' + id).toggle();
   } else {
     $.get('/tree-inner', {
@@ -30,4 +30,29 @@ function loadTree(id, subpath) {
     });
   }
 
+}
+
+
+function createDir(id, subpath) {
+  var str = prompt("Enter name of directory in " + subpath);
+  if (str) {
+    $.post('/create-dir', {
+      subpath: subpath,
+      name: str
+    }, function() {
+      loadTree(id, subpath, true);
+    });
+  }
+}
+
+function createFile(id, subpath) {
+  var str = prompt("Enter name of file in " + subpath);
+  if (str) {
+    $.post('/create-file', {
+      subpath: subpath,
+      name: str
+    }, function() {
+      loadTree(id, subpath, true);
+    });
+  }
 }
