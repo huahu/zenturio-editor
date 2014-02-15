@@ -1,13 +1,13 @@
 {
   "name": "zenturio-editor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Web editor based on Ace",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin" : {
-    "zenturio-editor" : "./bin/zenturio-editor"
+    "zenturio-editor" : "./bin/zenturio-editor.js"
   },
   "repository": {
     "type": "git",
