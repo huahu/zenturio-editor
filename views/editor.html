@@ -23,11 +23,9 @@
 <div id="editor">{{data}}</div>
 
 <script>
-    var EDITOR = ace.edit("editor");
-    EDITOR.setTheme("ace/theme/idle_fingers");
-    {% if mode %}
-    EDITOR.getSession().setMode("ace/mode/{{mode}}");
-    {% endif %}
+  {% if mode %}
+    startMode = '{{mode}}';
+  {% endif %}
 </script>
 
 {% endblock %}

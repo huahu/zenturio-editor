@@ -1,14 +1,5 @@
 var EDITOR = null;
 
-$(function() {
-  $(document).foundation();
-
-  if ($.cookie('info_block_hidden') == "yes") {
-    toggleInfoBlock();
-  }
-
-});
-
 function toggleInfoBlock() {
   $('.right-side').toggleClass('hidden');
   $('.right-side').toggle();
@@ -92,3 +83,29 @@ function changeMode(mode) {
     modeLabel(mode);
   }
 }
+
+
+var startMode = 'text';
+$(function() {
+  $(document).foundation();
+
+  if ($.cookie('info_block_hidden') == "yes") {
+    toggleInfoBlock();
+  }
+
+  if ($('#editor').length > 0) {
+    ace.require("ace/ext/language_tools");
+    EDITOR = ace.edit("editor");
+    EDITOR.setTheme("ace/theme/idle_fingers");
+    EDITOR.getSession().setTabSize(2);
+    document.getElementById('editor').style.fontSize = '15px';
+    EDITOR.setShowPrintMargin(false);
+    EDITOR.setOptions({
+      enableBasicAutocompletion: true,
+      enableSnippets: true
+    });
+
+    EDITOR.getSession().setMode("ace/mode/" + startMode);
+  }
+
+});
