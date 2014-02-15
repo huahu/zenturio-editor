@@ -1,3 +1,5 @@
+var EDITOR = null;
+
 $(function() {
   $(document).foundation();
   if ($.cookie('info_block_hidden') == "yes") {

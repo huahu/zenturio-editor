@@ -62,8 +62,12 @@ function getTreeList(_path) {
 }
 
 app.get('/', function(req, res) {
+
+  var model = getTreeItem(coreDir);
+
   res.render('tree', {
-    model: getTreeItem(coreDir)
+    model: model,
+    page_title: model.title
   });
 });
 
@@ -141,8 +145,39 @@ app.post('/create-file', function(req, res) {
 })
 
 
+var EXTS = require('./modes.js');
+
 app.get('/editor', function(req, res) {
-  res.render('editor');
+  var fullPath = coreParentDir + req.query.subpath;
+
+  if (!fs.existsSync(fullPath)) {
+    res.send(404, "404 Error");
+    return;
+  }
+
+  var model = getTreeItem(fullPath);
+
+  var ext = path.extname(fullPath);
+  var mode = false;
+  if (EXTS[ext]) {
+    mode = EXTS[ext];
+  }
+
+  fs.readFile(fullPath, 'utf8', function(err, data) {
+    if (err) {
+      res.send(500, "500 Error");
+      return;
+    }
+
+    res.render('editor', {
+      model: model,
+      page_title: model.title,
+      data: data,
+      mode: mode
+    });
+  });
+
+
 });
 
 var port = 3000;

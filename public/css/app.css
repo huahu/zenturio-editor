@@ -5259,3 +5259,10 @@ th.hide-for-touch {
 
 .warning-text {
   color: #f08a24; }
+
+#editor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 50px; }
