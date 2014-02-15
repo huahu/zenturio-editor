@@ -5,6 +5,12 @@ $(function() {
   if ($.cookie('info_block_hidden') == "yes") {
     toggleInfoBlock();
   }
+
+  $('#modeSelect').change(function() {
+    if (EDITOR) {
+      EDITOR.getSession().setMode("ace/mode/" + $(this).val());
+    }
+  });
 });
 
 function toggleInfoBlock() {

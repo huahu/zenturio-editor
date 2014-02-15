@@ -4,9 +4,19 @@
 
 <div class="row wide">
   <div class="columns large-12 panel alternative">
-    <h2>
+    <h2 style="display: inline;">
       <i class="fi-page"></i> <span data-tooltip title="{{model.path}}">{{model.title}}</span>
     </h2>
+
+    <select id="modeSelect">
+      {% for group,items in modes %}
+      <optgroup label="{{group}}">
+        {% for imode,label in items %}
+          <option value="{{imode}}" {% if mode==imode %}selected{% endif %}>{{label}}</option>
+        {% endfor %}
+      </optgroup>
+      {% endfor %}
+    </select>
   </div>
 </div>
 
@@ -16,7 +26,7 @@
     var EDITOR = ace.edit("editor");
     EDITOR.setTheme("ace/theme/idle_fingers");
     {% if mode %}
-    EDITOR.getSession().setMode("{{mode}}");
+    EDITOR.getSession().setMode("ace/mode/{{mode}}");
     {% endif %}
 </script>
 

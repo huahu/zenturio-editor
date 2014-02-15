@@ -159,9 +159,9 @@ app.get('/editor', function(req, res) {
   var model = getTreeItem(fullPath);
 
   var ext = path.extname(fullPath);
-  var mode = false;
-  if (EXTS[ext]) {
-    mode = EXTS[ext];
+  var mode = 'text';
+  if (EXTS.files[ext]) {
+    mode = EXTS.files[ext];
   }
 
   fs.readFile(fullPath, 'utf8', function(err, data) {
@@ -174,7 +174,8 @@ app.get('/editor', function(req, res) {
       model: model,
       page_title: model.title,
       data: data,
-      mode: mode
+      mode: mode,
+      modes: EXTS.pure
     });
   });
 
