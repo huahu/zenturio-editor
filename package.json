@@ -1,6 +1,6 @@
 {
   "name": "zenturio-editor",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Zenturio Editor - simple web-oriented text editor based on Ace.",
   "main": "index.js",
   "scripts": {

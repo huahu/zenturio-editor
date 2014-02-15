@@ -7,7 +7,7 @@ var app = express();
 var swig = require('swig');
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + path.sep +'views');
 
 // todo: change cache settings later
 app.set('view cache', false);
@@ -20,7 +20,7 @@ app.use(express.urlencoded());
 var coreDir = process.cwd();
 var coreParentDir = path.dirname(coreDir);
 
-app.use('/', express.static(__dirname + '/public'));
+app.use('/', express.static(__dirname + path.sep +'public'));
 
 var idInd = 1;
 
@@ -50,7 +50,7 @@ function getTreeList(_path) {
   var files = fs.readdirSync(_path);
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
-    var fpath = _path + '/' + file;
+    var fpath = _path + path.sep + file;
     var stats = fs.lstatSync(fpath);
     if (stats.isDirectory()) {
       _dirs.push(getTreeItem(fpath));
@@ -125,7 +125,7 @@ app.post('/create-dir', function(req, res) {
     return;
   }
 
-  fullPath += '/' + req.body.name;
+  fullPath += path.sep + req.body.name;
   fs.mkdirSync(fullPath);
 
   res.send('Directory ' + fullPath + ' created');
@@ -139,7 +139,7 @@ app.post('/create-file', function(req, res) {
     return;
   }
 
-  fullPath += '/' + req.body.name;
+  fullPath += path.sep + req.body.name;
   fs.openSync(fullPath, 'w');
 
   res.send('File ' + fullPath + ' created');
