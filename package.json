@@ -1,0 +1,25 @@
+{
+  "name": "zenturio-editor",
+  "version": "1.0.0",
+  "description": "Web editor based on Ace",
+  "main": "zenturio-editor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zenturio-solutions/zenturio-editor.git"
+  },
+  "keywords": [
+    "Web",
+    "IDE",
+    "Editor",
+    "Ace"
+  ],
+  "author": "Andreas Sotnik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zenturio-solutions/zenturio-editor/issues"
+  },
+  "homepage": "https://github.com/zenturio-solutions/zenturio-editor"
+}

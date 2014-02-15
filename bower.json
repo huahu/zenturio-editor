@@ -1,0 +1,9 @@
+{
+  "name": "zenturio-editor",
+  "version": "1.0.0",
+  "private": "true",
+  "dependencies": {
+    "foundation": "zurb/bower-foundation",
+    "angular": "~1.2.13"
+  }
+}
