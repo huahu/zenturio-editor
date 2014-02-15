@@ -57,7 +57,7 @@ function getTreeList(_path) {
     } else {
       _files.push(getTreeItem(fpath));
     }
-  };
+  }
 
   return _dirs.concat(_files);
 }
@@ -129,7 +129,7 @@ app.post('/create-dir', function(req, res) {
   fs.mkdirSync(fullPath);
 
   res.send('Directory ' + fullPath + ' created');
-})
+});
 
 app.post('/create-file', function(req, res) {
   var fullPath = coreParentDir + req.body.subpath;
@@ -140,10 +140,10 @@ app.post('/create-file', function(req, res) {
   }
 
   fullPath += '/' + req.body.name;
-  fs.openSync(fullPath, 'w')
+  fs.openSync(fullPath, 'w');
 
   res.send('File ' + fullPath + ' created');
-})
+});
 
 
 var EXTS = require('./modes.js');
