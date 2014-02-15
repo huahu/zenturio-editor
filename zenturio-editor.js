@@ -191,7 +191,13 @@ app.post('/save-file', function(req, res) {
 
   var data = req.body.data;
 
-  res.send("OK");
+  fs.writeFile(fullPath, data, function(err) {
+    if (err) {
+      res.send(500, 'Failed');
+    } else {
+      res.send("OK");
+    }
+  });
 });
 
 var port = 3000;
