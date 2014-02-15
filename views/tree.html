@@ -3,9 +3,9 @@
 {% block content %}
 <div class="row wide">
   <div class="columns large-12 panel alternative">
-    <a style="position: absolute; top: 13px; right: 10px;" onclick="toggleInfoBlock();"><i class="fi-monitor"></i> About</a>
+    <a style="position: absolute; top: 20px; right: 20px;" onclick="toggleInfoBlock();"><i class="fi-monitor"></i> About</a>
     <h2>
-      <i class="fi-archive"></i> <span data-tooltip title="{{model.subpath}}">{{model.title}}</span>
+      <img src="/img/small-logo.png" id="proj-logo-small"/> <span data-tooltip title="{{model.subpath}}">{{model.title}}</span>
     </h2>
   </div>
 </div>
@@ -20,10 +20,12 @@
         <img src="/img/logo.png" alt="">
       </p>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, placeat, aliquam dignissimos quidem natus tempore ut dolorum ipsa veniam eveniet.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores officia quae ex sapiente dolorem exercitationem.</p>
+      <p>Zenturio Editor - simple web-oriented text editor for developers that are tired of huge IDEs and expensive software.
+If you just need to edit some files in your project (local or remote) then this editor is really good option.
+It could be started on any machine where NodeJS is installed.</p>
+      <p>This editor based on <a href="http://ace.c9.io/" target="_blank">Ace</a>. Works better with console or ssh-access to your project.</p>
 
-      <p>View on <a href="https://github.com/zenturio-solutions/zenturio-editor" target="_blank">GitHub</a></p>
+      <p>View source code on <a href="https://github.com/zenturio-solutions/zenturio-editor" target="_blank">GitHub</a></p>
     </div>
   </div>
 </div>

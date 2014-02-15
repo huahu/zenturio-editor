@@ -5309,3 +5309,6 @@ h5.subheader {
 #unsavedLabel {
   margin-left: 30px;
   display: none; }
+
+#proj-logo-small {
+  height: 45px; }
