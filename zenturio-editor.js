@@ -160,8 +160,8 @@ app.get('/editor', function(req, res) {
 
   var ext = path.extname(fullPath);
   var mode = 'text';
-  if (EXTS.files[ext]) {
-    mode = EXTS.files[ext];
+  if (EXTS[ext]) {
+    mode = EXTS[ext];
   }
 
   fs.readFile(fullPath, 'utf8', function(err, data) {
@@ -174,8 +174,7 @@ app.get('/editor', function(req, res) {
       model: model,
       page_title: model.title,
       data: data,
-      mode: mode,
-      modes: EXTS.pure
+      mode: mode
     });
   });
 

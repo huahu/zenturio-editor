@@ -1,5 +1,4 @@
 module.exports = {
-  files: {
     '.txt': 'text',
     '.php': 'php',
     '.js': 'javascript',
@@ -24,33 +23,4 @@ module.exports = {
     '.yaml': 'yaml',
     '.yml': 'yaml',
     '.sh': 'sh'
-  },
-  pure: {
-    'Web Development': {
-      'javascript': 'JavaScript, NodeJs',
-      'php': 'PHP',
-      'html': 'HTML',
-      'twig': 'Twig',
-      'css': 'CSS',
-      'scss': 'SCSS',
-      'sass': 'SASS',
-      'less': 'Less',
-    },
-    "Scripting": {
-      'ruby': 'Ruby',
-      'python': 'Python',
-    },
-    "Languages": {
-      'java': 'Java',
-      'csharp': 'C#',
-      'c_cpp': 'C, C++',
-    },
-    "Text": {
-      'markdown': 'Markdown',
-      'text': 'Plain text',
-      'xml': 'XML',
-      'yaml': 'YAML',
-      'sh': 'Bash',
-    }
-  }
 };

@@ -2,21 +2,14 @@ var EDITOR = null;
 
 $(function() {
   $(document).foundation();
+
   if ($.cookie('info_block_hidden') == "yes") {
     toggleInfoBlock();
   }
 
-  $('#modeSelect').change(function() {
-    if (EDITOR) {
-      EDITOR.getSession().setMode("ace/mode/" + $(this).val());
-    }
-  });
 });
 
 function toggleInfoBlock() {
-  // $('.left-side').toggleClass('large-8');
-  // $('.left-side').toggleClass('end');
-
   $('.right-side').toggleClass('hidden');
   $('.right-side').toggle();
 
@@ -37,9 +30,7 @@ function loadTree(id, subpath, ignoreCached) {
       loadedIds[id] = true;
     });
   }
-
 }
-
 
 function createDir(id, subpath) {
   var str = prompt("Enter name of directory in " + subpath);
@@ -62,5 +53,42 @@ function createFile(id, subpath) {
     }, function() {
       loadTree(id, subpath, true);
     });
+  }
+}
+
+var modes = {
+  'javascript': 'JavaScript',
+  'php': 'PHP',
+  'html': 'HTML',
+  'twig': 'Twig',
+  'css': 'CSS',
+  'scss': 'SCSS',
+  'sass': 'SASS',
+  'less': 'Less',
+  'ruby': 'Ruby',
+  'python': 'Python',
+  'java': 'Java',
+  'csharp': 'C#',
+  'c_cpp': 'C, C++',
+  'markdown': 'Markdown',
+  'text': 'Plain text',
+  'xml': 'XML',
+  'yaml': 'YAML',
+  'sh': 'Bash'
+};
+
+function modeLabel(currMode) {
+  $('#curMode').html(modes[currMode]);
+}
+
+function showChangeMode() {
+  $('#modesWheel').toggle();
+}
+
+function changeMode(mode) {
+  $('#modesWheel').hide();
+  if (EDITOR) {
+    EDITOR.getSession().setMode("ace/mode/" + mode);
+    modeLabel(mode);
   }
 }

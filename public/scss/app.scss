@@ -29,13 +29,6 @@ h5.subheader {
   user-select: none;
 }
 
-#modeSelect {
-  padding: 0 10px;
-  // background: $secondary-color;
-  cursor: pointer;
-  width: auto;
-}
-
 .inner-dir {
   padding-left: 4%;
 }
@@ -86,5 +79,16 @@ h5.subheader {
   left: 0;
   right: 0;
   bottom: 0;
+  top: 50px;
+}
+
+#modesWheel {
+  z-index: 1000;
+  background-color: $secondary-color;
+  padding: 25px;
+  display: block;
+  position: fixed;
+  left: 0;
+  right: 0;
   top: 50px;
 }
