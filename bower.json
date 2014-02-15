@@ -5,6 +5,7 @@
   "dependencies": {
     "foundation": "zurb/bower-foundation",
     "angular": "~1.2.13",
-    "ace-builds": "~1.1.1"
+    "ace-builds": "~1.1.1",
+    "foundation-icon-fonts": "zurb/foundation-icon-fonts"
   }
 }
