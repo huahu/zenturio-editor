@@ -5239,13 +5239,16 @@ h5.subheader {
 
 .left-side, .right-side {
   -webkit-user-select: none;
-  /* Chrome/Safari */
   -moz-user-select: none;
-  /* Firefox */
   -ms-user-select: none;
-  /* IE10+ */
   -o-user-select: none;
   user-select: none; }
+  .left-side h5 a, .right-side h5 a {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    -o-user-select: text;
+    user-select: text; }
 
 .inner-dir {
   padding-left: 4%; }
