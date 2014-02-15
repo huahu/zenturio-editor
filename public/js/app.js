@@ -62,7 +62,7 @@ var modes = {
   'csharp': 'C#',
   'c_cpp': 'C, C++',
   'markdown': 'Markdown',
-  'text': 'Plain text',
+  'text': 'Plain Text',
   'xml': 'XML',
   'yaml': 'YAML',
   'sh': 'Bash'
@@ -100,6 +100,7 @@ $(function() {
     EDITOR.getSession().setTabSize(2);
     EDITOR.setShowPrintMargin(false);
     EDITOR.setShowInvisibles(true);
+    EDITOR.setHighlightSelectedWord(true);
     EDITOR.setOptions({
       enableBasicAutocompletion: true,
       enableSnippets: true
