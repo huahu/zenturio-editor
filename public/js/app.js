@@ -100,6 +100,7 @@ $(function() {
     EDITOR.getSession().setTabSize(2);
     document.getElementById('editor').style.fontSize = '15px';
     EDITOR.setShowPrintMargin(false);
+    EDITOR.setShowInvisibles(true);
     EDITOR.setOptions({
       enableBasicAutocompletion: true,
       enableSnippets: true
