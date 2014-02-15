@@ -180,6 +180,30 @@ app.get('/editor', function(req, res) {
   });
 });
 
+app.post('/delete-file', function(req, res) {
+  var fullPath = coreParentDir + req.body.subpath;
+
+  if (!fs.existsSync(fullPath)) {
+    res.send(404, "404 Error");
+    return;
+  }
+
+  var stats = fs.lstatSync(fullPath);
+  if (stats.isDirectory()) {
+    try {
+      fs.rmdirSync(fullPath);
+    } catch (err) {}
+  } else {
+    fs.unlinkSync(fullPath);
+  }
+
+  if (!fs.existsSync(fullPath)) {
+    res.send("OK");
+  } else {
+    res.send(500, "Failed");
+  }
+});
+
 
 app.post('/save-file', function(req, res) {
   var fullPath = coreParentDir + req.body.subpath;

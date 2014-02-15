@@ -51,6 +51,17 @@ function createFile(id, subpath) {
   }
 }
 
+function deleteFile(elem, id, subpath) {
+  if (confirm('Are you really want delete "' + subpath + '"?')) {
+    $.post('/delete-file', {
+      subpath: subpath
+    }, function() {
+      $('#rowModel' + id).remove();
+      $('#rowModelFiles' + id).remove();
+    });
+  }
+}
+
 var modes = {
   'javascript': 'JavaScript',
   'php': 'PHP',
