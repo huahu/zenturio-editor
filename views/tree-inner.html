@@ -1,0 +1,13 @@
+{% if not error and list.length %}
+  {% for model in list %}
+    {% if model.type == 'dir' %}
+      {% include "_dir.html" %}
+    {% else %}
+      {% include "_file.html" %}
+    {% endif %}
+  {% endfor %}
+{% elseif error %}
+  <p class="error-text"><i>Error occurred while getting directory entries.</i></p>
+{% else %}
+  <p><i>Directory is empty</i></p>
+{% endif %}

@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 var express = require('express');
+var fs = require('fs');
+var path = require('path');
 var app = express();
 var swig = require('swig');
 app.engine('html', swig.renderFile);
@@ -14,31 +16,58 @@ swig.setDefaults({
 
 app.use('/', express.static(__dirname + '/public'));
 
-var tmp = [{
-  title: 'zenturio-solutions',
-  type: 'dir',
-  items: [{
-    title: 'cache',
-    type: 'dir',
-    items: [{
-      title: 'test.js',
-      type: 'file',
-    }, {
-      title: 'some-data.html',
-      type: 'file',
-    }, {
-      title: 'ookay.dat',
-      type: 'file',
-    }, ]
-  }, {
-    title: 'index.js',
-    type: 'file',
-  }, ]
-}];
+var idInd = 1;
+
+function parentDir() {
+  return path.dirname(__dirname);
+}
+
+function getTreeItem(_path) {
+  var model = {};
+  model.id = idInd++;
+  model.path = _path;
+  model.subpath = _path.replace(parentDir(), "");
+  model.title = path.basename(_path);
+  var stats = fs.lstatSync(_path);
+  model.type = stats.isDirectory() ? 'dir' : 'file';
+  return model;
+}
+
+function getTreeList(_path) {
+  var _dirs = [];
+  var _files = [];
+  if (!fs.existsSync(_path)) {
+    return false;
+  }
+
+  var files = fs.readdirSync(_path);
+  for (var i = 0; i < files.length; i++) {
+    var file = files[i];
+    var fpath = _path + '/' + file;
+    var stats = fs.lstatSync(fpath);
+    if (stats.isDirectory()) {
+      _dirs.push(getTreeItem(fpath));
+    } else {
+      _files.push(getTreeItem(fpath));
+    }
+  };
+
+  return _dirs.concat(_files);
+}
 
 app.get('/', function(req, res) {
   res.render('tree', {
-    items: tmp
+    model: getTreeItem(__dirname)
+  });
+});
+
+app.get('/tree-inner', function(req, res) {
+  var fullPath = parentDir() + req.query.subpath;
+  var result = getTreeList(fullPath);
+
+  res.render('tree-inner', {
+    list: result,
+    error: result === false
   });
 });
 

@@ -12,3 +12,18 @@ function toggleInfoBlock() {
 
   $('.right-side').toggle();
 }
+
+var loadedIds =  [];
+
+function loadTree(id, subpath) {
+  if (loadedIds[id]) {
+    $('#rowModelFiles'+id).toggle();
+  } else {
+    $.get('/tree-inner', {subpath:subpath}, function(data) {
+      $('#rowModelFiles'+id+" .inner-dir").html(data);
+      $('#rowModelFiles'+id).show();
+      loadedIds[id] = true;
+    });
+  }
+
+}

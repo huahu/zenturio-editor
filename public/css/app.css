@@ -5234,3 +5234,6 @@ th.hide-for-touch {
 
 .hoverable:hover {
   background-color: #e7e7e7; }
+
+.error-text {
+  color: #f04124; }

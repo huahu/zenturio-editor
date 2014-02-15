@@ -5,20 +5,14 @@
   <div class="columns large-12 panel alternative">
     <button class="button radius tiny right" style="margin: 10px;" onclick="toggleInfoBlock();"><i class="fi-alert"></i></button>
     <h2>
-      <i class="fi-thumbnails" data-tooltip class="has-tip" title="/var/zenturio/zenturio-editor"></i> zenturio-editor
+      <i class="fi-thumbnails" data-tooltip class="has-tip" title="{{model.path}}"></i> {{model.title}}
     </h2>
   </div>
 </div>
 
 <div class="row wide">
   <div class="columns large-8 left-side">
-    {% for item in items %}
-      {% if item.type == 'dir' %}
-        {% include "_dir.html" with {model:item} %}
-      {% else %}
-        {% include "_file.html" with {model:item} %}
-      {% endif %}
-    {% endfor %}
+    {% include "_dir.html" %}
   </div>
   <div class="columns large-4 right-side">
     <div class="panel">

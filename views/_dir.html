@@ -1,19 +1,9 @@
-<div class="row hoverable">
+<div class="row hoverable" id="rowModel{{model.id}}">
   <div class="columns large-12">
-    <h5><i class="fi-folder"></i> {{ model.title }}</h5>
+    <h5><i class="fi-folder"></i> <a href="#" onclick="loadTree({{model.id}}, '{{model.subpath}}'); return false;">{{ model.title }}</a></h5>
   </div>
 </div>
-
-{% if model.items %}
-<div class="row">
+<div class="row" style="display: none;" id="rowModelFiles{{model.id}}">
   <div class="columns large-12 inner-dir">
-    {% for item in model.items %}
-      {% if item.type == 'dir' %}
-        {% include "_dir.html" with {model:item} %}
-      {% else %}
-        {% include "_file.html" with {model:item} %}
-      {% endif %}
-    {% endfor %}
   </div>
 </div>
-{% endif %}
