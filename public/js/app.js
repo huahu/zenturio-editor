@@ -1,6 +1,9 @@
 var EDITOR = null;
 
 function toggleInfoBlock() {
+  $('.left-side').toggleClass('large-8');
+  $('.left-side').toggleClass('large-9');
+
   $('.right-side').toggleClass('hidden');
   $('.right-side').toggle();
 
