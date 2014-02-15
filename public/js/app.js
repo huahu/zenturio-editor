@@ -1,3 +1,7 @@
-// Foundation JavaScript
-// Documentation can be found at: http://foundation.zurb.com/docs
-$(document).foundation();
+var zenturioEditor = angular.module('zenturio-editor', []);
+
+// todo: wite angular controllers here
+
+$(function() {
+  $(document).foundation();
+});
