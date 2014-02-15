@@ -1,4 +1,5 @@
 var EDITOR = null;
+var SUBPATH = null;
 
 function toggleInfoBlock() {
   $('.left-side').toggleClass('large-8');
@@ -87,6 +88,29 @@ function changeMode(mode) {
   }
 }
 
+function confirmExit() {
+  return 'File was changed. You may lose your data now...';
+}
+
+function attachWarningOnClose() {
+  window.onbeforeunload = confirmExit;
+}
+
+function deattachWarningOnClose() {
+  window.onbeforeunload = null;
+}
+
+function triggerSaved() {
+  $('#savedLabel').fadeIn(700, function() {
+    $('#savedLabel').fadeOut(600);
+  });
+}
+
+function triggerUnSaved() {
+  $('#unsavedLabel').fadeIn(700, function() {
+    $('#unsavedLabel').fadeOut(600);
+  });
+}
 
 var startMode = 'text';
 $(function() {
@@ -98,6 +122,7 @@ $(function() {
 
   if ($('#editor').length > 0) {
     ace.require("ace/ext/language_tools");
+
     EDITOR = ace.edit("editor");
     EDITOR.setTheme("ace/theme/idle_fingers");
     EDITOR.getSession().setTabSize(2);
@@ -109,7 +134,34 @@ $(function() {
       enableSnippets: true
     });
 
+    EDITOR.getSession().on('change', function(e) {
+      attachWarningOnClose();
+    });
+
     EDITOR.getSession().setMode("ace/mode/" + startMode);
+    EDITOR.commands.addCommand({
+      name: 'SaveCommand',
+      bindKey: {
+        win: 'Ctrl-S',
+        mac: 'Command-S'
+      },
+      exec: function(editor) {
+        $.ajax({
+          url: '/save-file',
+          type: 'POST',
+          data: {
+            subpath: SUBPATH,
+            data: EDITOR.getValue()
+          }
+        }).done(function() {
+          triggerSaved();
+          deattachWarningOnClose();
+        }).error(function() {
+          triggerUnSaved();
+        });
+      },
+      readOnly: false
+    });
   }
 
 });

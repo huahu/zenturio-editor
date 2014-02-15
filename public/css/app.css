@@ -5237,7 +5237,7 @@ h5.subheader {
   h5.subheader a, h5.subheader .body-color-text {
     color: #797979 !important; }
 
-.left-side {
+.left-side, .right-side {
   -webkit-user-select: none;
   /* Chrome/Safari */
   -moz-user-select: none;
@@ -5298,3 +5298,11 @@ h5.subheader {
   left: 0;
   right: 0;
   top: 50px; }
+
+#savedLabel {
+  margin-left: 30px;
+  display: none; }
+
+#unsavedLabel {
+  margin-left: 30px;
+  display: none; }

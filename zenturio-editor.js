@@ -174,11 +174,24 @@ app.get('/editor', function(req, res) {
       model: model,
       page_title: model.title,
       data: data,
-      mode: mode
+      mode: mode,
+      subpath: req.query.subpath
     });
   });
+});
 
 
+app.post('/save-file', function(req, res) {
+  var fullPath = coreParentDir + req.body.subpath;
+
+  if (!fs.existsSync(fullPath)) {
+    res.send(404, "404 Error");
+    return;
+  }
+
+  var data = req.body.data;
+
+  res.send("OK");
 });
 
 var port = 3000;

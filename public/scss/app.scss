@@ -21,13 +21,14 @@ h5.subheader {
   }
 }
 
-.left-side {
+.left-side, .right-side {
   -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
   -o-user-select: none;
   user-select: none;
 }
+
 
 .inner-dir {
   padding-left: 4%;
@@ -92,4 +93,13 @@ h5.subheader {
   left: 0;
   right: 0;
   top: 50px;
+}
+
+#savedLabel {
+  margin-left: 30px;
+  display: none;
+}
+#unsavedLabel {
+  margin-left: 30px;
+  display: none;
 }
