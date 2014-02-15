@@ -5,7 +5,6 @@ module.exports = {
     '.json': 'javascript',
     '.c': 'c_cpp',
     '.cpp': 'c_cpp',
-    '.cpp': 'c_cpp',
     '.css': 'css',
     '.scss': 'scss',
     '.sass': 'sass',
