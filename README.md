@@ -1,7 +1,7 @@
 zenturio-editor
 ===============
 
-Web editor based on Ace.
+Minimalistic web editor based on Ace.
 
 ## Installation
 
