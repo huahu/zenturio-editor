@@ -6,8 +6,8 @@ $(function() {
 });
 
 function toggleInfoBlock() {
-  $('.left-side').toggleClass('large-8');
-  $('.left-side').toggleClass('large-12');
+  // $('.left-side').toggleClass('large-8');
+  // $('.left-side').toggleClass('end');
 
   $('.right-side').toggleClass('hidden');
   $('.right-side').toggle();

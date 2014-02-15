@@ -1,9 +1,9 @@
 <div class="row hoverable" id="rowModel{{model.id}}">
-  <div class="columns medium-8" onclick="loadTree({{model.id}}, '{{model.subpath}}'); return false;">
+  <div class="columns medium-9" onclick="loadTree({{model.id}}, '{{model.subpath}}'); return false;">
     <h5><i class="fi-folder"></i> <a>{{ model.title }}</a></h5>
   </div>
-  <div class="columns medium-4">
-    <ul class="inline-list only-hoverable item-menu">
+  <div class="columns medium-3">
+    <ul class="inline-list only-hoverable item-menu right">
       <li><a href="#"><i class="fi-plus"></i> Create</a></li>
       <li><a href="#"><i class="fi-widget"></i> More</a></li>
     </ul>
@@ -13,3 +13,10 @@
   <div class="columns large-12 inner-dir">
   </div>
 </div>
+
+{% if loadFirst %}
+  <script>
+  $(function(){
+    loadTree({{model.id}}, '{{model.subpath}}');
+  });</script>
+{% endif %}
