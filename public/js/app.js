@@ -98,7 +98,6 @@ $(function() {
     EDITOR = ace.edit("editor");
     EDITOR.setTheme("ace/theme/idle_fingers");
     EDITOR.getSession().setTabSize(2);
-    document.getElementById('editor').style.fontSize = '15px';
     EDITOR.setShowPrintMargin(false);
     EDITOR.setShowInvisibles(true);
     EDITOR.setOptions({
