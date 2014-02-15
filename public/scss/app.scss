@@ -13,9 +13,26 @@
   padding: 0.3em 1em;
 }
 
-.hoverable:hover {
+.hoverable:hover{
   background-color: $secondary-color;
 }
+
+.item-menu {
+  font-size: 14px;
+  display: block;
+  margin-top: 7px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.hoverable .only-hoverable {
+  display: none;
+}
+.hoverable:hover .only-hoverable {
+  display: block;
+}
+
+
 
 .error-text {
   color: $alert-color;
