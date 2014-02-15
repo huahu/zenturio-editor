@@ -22,6 +22,8 @@ function parentDir() {
   return path.dirname(__dirname);
 }
 
+var loadedInfo = [];
+
 function getTreeItem(_path) {
   var model = {};
   model.id = idInd++;
@@ -30,6 +32,7 @@ function getTreeItem(_path) {
   model.title = path.basename(_path);
   var stats = fs.lstatSync(_path);
   model.type = stats.isDirectory() ? 'dir' : 'file';
+  loadedInfo[_path] = model;
   return model;
 }
 

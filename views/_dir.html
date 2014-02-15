@@ -1,6 +1,6 @@
-<div class="row hoverable" id="rowModel{{model.id}}">
+<div class="row hoverable" id="rowModel{{model.id}}" onclick="loadTree({{model.id}}, '{{model.subpath}}'); return false;">
   <div class="columns large-12">
-    <h5><i class="fi-folder"></i> <a href="#" onclick="loadTree({{model.id}}, '{{model.subpath}}'); return false;">{{ model.title }}</a></h5>
+    <h5><i class="fi-folder"></i> <span class="success-text">{{ model.title }}</span></h5>
   </div>
 </div>
 <div class="row" style="display: none;" id="rowModelFiles{{model.id}}">
