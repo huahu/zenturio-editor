@@ -227,6 +227,6 @@ app.post('/save-file', function(req, res) {
 var port = 3000;
 app.listen(port, function(err) {
   if (!err) {
-    console.log('Zenturio Editor started at port ', port);
+    console.log('Zenturio Editor started at port ' + port);
   }
 });
