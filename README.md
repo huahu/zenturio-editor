@@ -24,6 +24,8 @@ Then open `http://IP-or-hostname:3000/` in browser.
 1. Quick Search
 2. More in Tree View
 3. More Shortcuts
-4. ???
+4. Improved settings (port, ip filters)
+5. Improved security (http auth, cross-project saving)
+6. ???
   
 
