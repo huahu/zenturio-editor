@@ -5,6 +5,32 @@
   min-width: 100%;
 }
 
+.body-color-text {
+  color: $body-font-color;
+}
+
+.body-color-text:hover {
+  color: scale-color($body-font-color, $lightness: -10%);
+}
+
+h5.subheader {
+  color: #797979 !important;
+
+  a, .body-color-text {
+    color: #797979 !important;
+  }
+}
+
+.left-side {
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+  -o-user-select: none;
+  user-select: none;
+}
+
+
+
 .inner-dir {
   padding-left: 4%;
 }

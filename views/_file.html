@@ -1,6 +1,11 @@
-<div class="row hoverable">
+<div class="row hoverable" id="rowModel{{model.id}}">
   <div class="columns medium-9">
-    <h5><i class="fi-page"></i> {{ model.title }}</h5>
+    {% if model.hidden %}
+      <h5 class="subheader"><i class="fi-page"></i> <a class="body-color-text" href="/editor?subpath={{model.subpathUrl}}" target="_blank">{{ model.title }}</a></h5>
+    {% else %}
+      <h5><i class="fi-page"></i> <a class="body-color-text" href="/editor?subpath={{model.subpathUrl}}" target="_blank">{{ model.title }}</a></h5>
+    {% endif %}
+
   </div>
   <div class="columns medium-3">
     <ul class="inline-list only-hoverable item-menu right">

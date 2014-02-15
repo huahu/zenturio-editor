@@ -6,7 +6,7 @@ module.exports = {
   '.cpp': 'ace/mode/c_cpp',
   '.cpp': 'ace/mode/c_cpp',
   '.css': 'ace/mode/css',
-  '.scss': 'ace/mode/sass',
+  '.scss': 'ace/mode/scss',
   '.sass': 'ace/mode/sass',
   '.coffee': 'ace/mode/coffee',
   '.cs': 'ace/mode/csharp',
@@ -21,5 +21,6 @@ module.exports = {
   '.xml': 'ace/mode/xml',
   '.svg': 'ace/mode/xml',
   '.yaml': 'ace/mode/yaml',
-  '.yml': 'ace/mode/yaml'
+  '.yml': 'ace/mode/yaml',
+  '.sh': 'ace/mode/sh'
 };

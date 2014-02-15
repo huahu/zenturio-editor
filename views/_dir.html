@@ -1,6 +1,10 @@
 <div class="row hoverable" id="rowModel{{model.id}}">
   <div class="columns medium-9" onclick="loadTree({{model.id}}, '{{model.subpath}}'); return false;">
-    <h5><i class="fi-folder"></i> <a>{{ model.title }}</a></h5>
+    {% if model.hidden %}
+      <h5 class="subheader"><i class="fi-folder"></i> <a>{{ model.title }}</a></h5>
+    {% else %}
+      <h5><i class="fi-folder"></i> <a>{{ model.title }}</a></h5>
+    {% endif %}
   </div>
   <div class="columns medium-3">
     <ul class="inline-list only-hoverable item-menu right">

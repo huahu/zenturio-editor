@@ -3570,7 +3570,7 @@ table {
   left: 50%;
   width: 100%;
   color: white;
-  background: #333333; }
+  background: #777777; }
   .tooltip > .nub {
     display: block;
     left: 5px;
@@ -3578,7 +3578,7 @@ table {
     width: 0;
     height: 0;
     border: solid 5px;
-    border-color: transparent transparent #333333 transparent;
+    border-color: transparent transparent #777777 transparent;
     top: -10px; }
   .tooltip.radius {
     -webkit-border-radius: 3px;
@@ -3600,22 +3600,22 @@ table {
 
 @media only screen and (min-width: 40.063em) {
   .tooltip > .nub {
-    border-color: transparent transparent #333333 transparent;
+    border-color: transparent transparent #777777 transparent;
     top: -10px; }
   .tooltip.tip-top > .nub {
-    border-color: #333333 transparent transparent transparent;
+    border-color: #777777 transparent transparent transparent;
     top: auto;
     bottom: -10px; }
   .tooltip.tip-left, .tooltip.tip-right {
     float: none !important; }
   .tooltip.tip-left > .nub {
-    border-color: transparent transparent transparent #333333;
+    border-color: transparent transparent transparent #777777;
     right: -10px;
     left: auto;
     top: 50%;
     margin-top: -5px; }
   .tooltip.tip-right > .nub {
-    border-color: transparent #333333 transparent transparent;
+    border-color: transparent #777777 transparent transparent;
     right: auto;
     left: -10px;
     top: 50%;
@@ -5225,6 +5225,27 @@ th.hide-for-touch {
 
 .row.wide {
   min-width: 100%; }
+
+.body-color-text {
+  color: #bed882; }
+
+.body-color-text:hover {
+  color: #b0d068; }
+
+h5.subheader {
+  color: #797979 !important; }
+  h5.subheader a, h5.subheader .body-color-text {
+    color: #797979 !important; }
+
+.left-side {
+  -webkit-user-select: none;
+  /* Chrome/Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+ */
+  -o-user-select: none;
+  user-select: none; }
 
 .inner-dir {
   padding-left: 4%; }

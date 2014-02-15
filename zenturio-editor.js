@@ -33,6 +33,7 @@ function getTreeItem(_path) {
   model.subpath = _path.replace(coreParentDir, "");
   model.subpathUrl = encodeURIComponent(_path.replace(coreParentDir, ""));
   model.title = path.basename(_path);
+  model.hidden = model.title[0] == '.';
   var stats = fs.lstatSync(_path);
   model.type = stats.isDirectory() ? 'dir' : 'file';
   loadedInfo[_path] = model;
