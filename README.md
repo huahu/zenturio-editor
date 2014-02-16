@@ -21,6 +21,7 @@ Then open `http://IP-or-hostname:3000/` in browser.
 
 ## TODO
 
+0. Fix for Windows OS
 1. Quick Search
 2. More in Tree View
 3. More Shortcuts
