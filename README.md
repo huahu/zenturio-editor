@@ -19,13 +19,17 @@ In directory of your project run:
 
 Then open `http://IP-or-hostname:3000/` in browser.
 
+## Options
+
+You can specify port this way:
+
+    $ zenturio-editor --port=3500
+
 ## TODO
 
 1. Quick Search
-2. More in Tree View
-3. More Shortcuts
-4. Improved settings (port, ip filters)
-5. Improved security (http auth, cross-project saving)
-6. ???
+2. Non-empty directory delete
+3. Improved security (http auth, cross-project saving)
+4. ???
   
 
