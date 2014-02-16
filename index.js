@@ -7,7 +7,7 @@ var app = express();
 var swig = require('swig');
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
-app.set('views', __dirname + path.sep +'views');
+app.set('views', __dirname + path.sep + 'views');
 
 // todo: change cache settings later
 app.set('view cache', false);
@@ -20,7 +20,7 @@ app.use(express.urlencoded());
 var coreDir = process.cwd();
 var coreParentDir = path.dirname(coreDir);
 
-app.use('/', express.static(__dirname + path.sep +'public'));
+app.use('/', express.static(__dirname + path.sep + 'public'));
 
 var idInd = 1;
 
@@ -73,7 +73,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/tree-inner', function(req, res) {
-  var fullPath = coreParentDir + req.query.subpath;
+  var fullPath = coreParentDir + decodeURIComponent(req.query.subpath);
   var result = getTreeList(fullPath);
 
   res.render('tree-inner', {
@@ -83,7 +83,7 @@ app.get('/tree-inner', function(req, res) {
 });
 
 app.get('/raw', function(req, res) {
-  var fullPath = coreParentDir + req.query.subpath;
+  var fullPath = coreParentDir + decodeURIComponent(req.query.subpath);
 
   if (!fs.existsSync(fullPath)) {
     res.send(404, "404 Error");
@@ -118,7 +118,7 @@ app.get('/raw', function(req, res) {
 });
 
 app.post('/create-dir', function(req, res) {
-  var fullPath = coreParentDir + req.body.subpath;
+  var fullPath = coreParentDir + decodeURIComponent(req.body.subpath);
 
   if (!fs.existsSync(fullPath)) {
     res.send(404, "404 Error. " + fullPath);
@@ -132,7 +132,7 @@ app.post('/create-dir', function(req, res) {
 });
 
 app.post('/create-file', function(req, res) {
-  var fullPath = coreParentDir + req.body.subpath;
+  var fullPath = coreParentDir + decodeURIComponent(req.body.subpath);
 
   if (!fs.existsSync(fullPath)) {
     res.send(404, "404 Error. " + fullPath);
@@ -149,7 +149,7 @@ app.post('/create-file', function(req, res) {
 var EXTS = require('./modes.js');
 
 app.get('/editor', function(req, res) {
-  var fullPath = coreParentDir + req.query.subpath;
+  var fullPath = coreParentDir + decodeURIComponent(req.query.subpath);
 
   if (!fs.existsSync(fullPath)) {
     res.send(404, "404 Error");
@@ -175,13 +175,14 @@ app.get('/editor', function(req, res) {
       page_title: model.title,
       data: data,
       mode: mode,
-      subpath: req.query.subpath
+      subpath: model.subpath,
+      subpathUrl: model.subpathUrl
     });
   });
 });
 
 app.post('/delete-file', function(req, res) {
-  var fullPath = coreParentDir + req.body.subpath;
+  var fullPath = coreParentDir + decodeURIComponent(req.body.subpath);
 
   if (!fs.existsSync(fullPath)) {
     res.send(404, "404 Error");
@@ -206,7 +207,7 @@ app.post('/delete-file', function(req, res) {
 
 
 app.post('/save-file', function(req, res) {
-  var fullPath = coreParentDir + req.body.subpath;
+  var fullPath = coreParentDir + decodeURIComponent(req.body.subpath);
 
   if (!fs.existsSync(fullPath)) {
     res.send(404, "404 Error");

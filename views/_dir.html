@@ -1,5 +1,5 @@
 <div class="row hoverable" id="rowModel{{model.id}}">
-  <div class="columns medium-9" onclick="loadTree({{model.id}}, '{{model.subpath}}'); return false;">
+  <div class="columns medium-9" onclick="loadTree({{model.id}}, '{{model.subpathUrl}}'); return false;">
     {% if model.hidden %}
       <h5 class="subheader"><i class="fi-folder"></i> <a>{{ model.title }}</a></h5>
     {% else %}
@@ -8,10 +8,10 @@
   </div>
   <div class="columns medium-3">
     <ul class="inline-list only-hoverable item-menu right">
-      <li><a href="#" onclick="createFile({{model.id}}, '{{model.subpath}}'); return false;"><i class="fi-page-add"></i> File</a></li>
-      <li><a href="#" onclick="createDir({{model.id}}, '{{model.subpath}}'); return false;"><i class="fi-folder-add"></i> Dir</a></li>
+      <li><a href="#" onclick="createFile({{model.id}}, '{{model.subpathUrl}}'); return false;"><i class="fi-page-add"></i> File</a></li>
+      <li><a href="#" onclick="createDir({{model.id}}, '{{model.subpathUrl}}'); return false;"><i class="fi-folder-add"></i> Dir</a></li>
       {% if not loadFirst %}
-      <li><a href="#" onclick="deleteFile(this, {{model.id}}, '{{model.subpath}}'); return false;"><i class="fi-trash"></i> Delete</a></li>
+      <li><a href="#" onclick="deleteFile(this, {{model.id}}, '{{model.subpathUrl}}'); return false;"><i class="fi-trash"></i> Delete</a></li>
       {% endif %}
     </ul>
   </div>
@@ -24,6 +24,6 @@
 {% if loadFirst %}
   <script>
   $(function(){
-    loadTree({{model.id}}, '{{model.subpath}}');
+    loadTree({{model.id}}, '{{model.subpathUrl}}');
   });</script>
 {% endif %}
