@@ -7,6 +7,18 @@ var EXTS = require('./modes.js');
 var coreParentDir = null;
 var coreDir = null;
 
+function existsAndIsFile(fullPath) {
+  var stats = fs.lstatSync(fullPath);
+  return fs.existsSync(fullPath) && !stats.isDirectory();
+}
+
+/**
+ * Extract full path from request. source = (req.body or req.query)
+ **/
+function extractFullPath(source) {
+  return coreParentDir + decodeURIComponent(source.subpath);
+}
+
 function getTreeItem(_path) {
   var model = {};
   model.id = idInd++;
@@ -59,7 +71,7 @@ module.exports = function(app, _coreDir, _coreParentDir) {
   });
 
   app.get('/tree-inner', function(req, res) {
-    var fullPath = coreParentDir + decodeURIComponent(req.query.subpath);
+    var fullPath = extractFullPath(req.query);
     var result = getTreeList(fullPath);
 
     res.render('tree-inner', {
@@ -69,16 +81,10 @@ module.exports = function(app, _coreDir, _coreParentDir) {
   });
 
   app.get('/raw', function(req, res) {
-    var fullPath = coreParentDir + decodeURIComponent(req.query.subpath);
-
-    if (!fs.existsSync(fullPath)) {
-      res.send(404, "404 Error");
-      return;
-    }
-
-    var stats = fs.lstatSync(fullPath);
-    if (stats.isDirectory()) {
-      res.send(500, "500 Error");
+    var fullPath = extractFullPath(req.query);
+    
+    if (!existsAndIsFile(fullPath)) {
+      res.send(500, "Invalid subpath");
       return;
     }
 
@@ -104,7 +110,7 @@ module.exports = function(app, _coreDir, _coreParentDir) {
   });
 
   app.post('/create-dir', function(req, res) {
-    var fullPath = coreParentDir + decodeURIComponent(req.body.subpath);
+    var fullPath = extractFullPath(req.body);
 
     if (!fs.existsSync(fullPath)) {
       res.send(404, "404 Error. " + fullPath);
@@ -118,7 +124,7 @@ module.exports = function(app, _coreDir, _coreParentDir) {
   });
 
   app.post('/create-file', function(req, res) {
-    var fullPath = coreParentDir + decodeURIComponent(req.body.subpath);
+    var fullPath = extractFullPath(req.body);
 
     if (!fs.existsSync(fullPath)) {
       res.send(404, "404 Error. " + fullPath);
@@ -132,7 +138,7 @@ module.exports = function(app, _coreDir, _coreParentDir) {
   });
 
   app.get('/editor', function(req, res) {
-    var fullPath = coreParentDir + decodeURIComponent(req.query.subpath);
+    var fullPath = extractFullPath(req.query);
 
     if (!fs.existsSync(fullPath)) {
       res.send(404, "404 Error");
@@ -165,7 +171,7 @@ module.exports = function(app, _coreDir, _coreParentDir) {
   });
 
   app.post('/delete-file', function(req, res) {
-    var fullPath = coreParentDir + decodeURIComponent(req.body.subpath);
+    var fullPath = extractFullPath(req.body);
 
     if (!fs.existsSync(fullPath)) {
       res.send(404, "404 Error");
@@ -190,7 +196,7 @@ module.exports = function(app, _coreDir, _coreParentDir) {
 
 
   app.post('/save-file', function(req, res) {
-    var fullPath = coreParentDir + decodeURIComponent(req.body.subpath);
+    var fullPath = extractFullPath(req.body);
 
     if (!fs.existsSync(fullPath)) {
       res.send(404, "404 Error");
