@@ -5,9 +5,10 @@ var fs = require('fs');
 var path = require('path');
 var app = express();
 var swig = require('swig');
+
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
-app.set('views', __dirname + path.sep +'views');
+app.set('views', __dirname + path.sep + 'views');
 
 // todo: change cache settings later
 app.set('view cache', false);
@@ -20,213 +21,29 @@ app.use(express.urlencoded());
 var coreDir = process.cwd();
 var coreParentDir = path.dirname(coreDir);
 
-app.use('/', express.static(__dirname + path.sep +'public'));
+app.use('/', express.static(__dirname + path.sep + 'public'));
 
-var idInd = 1;
+require('./actions')(app, coreDir, coreParentDir);
+var settings = {
+  port: 3000
+};
 
-var loadedInfo = [];
-
-function getTreeItem(_path) {
-  var model = {};
-  model.id = idInd++;
-  model.path = _path;
-  model.subpath = _path.replace(coreParentDir, "");
-  model.subpathUrl = encodeURIComponent(_path.replace(coreParentDir, ""));
-  model.title = path.basename(_path);
-  model.hidden = model.title[0] == '.';
-  var stats = fs.lstatSync(_path);
-  model.type = stats.isDirectory() ? 'dir' : 'file';
-  loadedInfo[_path] = model;
-  return model;
-}
-
-function getTreeList(_path) {
-  var _dirs = [];
-  var _files = [];
-  if (!fs.existsSync(_path)) {
-    return false;
-  }
-
-  var files = fs.readdirSync(_path);
-  for (var i = 0; i < files.length; i++) {
-    var file = files[i];
-    var fpath = _path + path.sep + file;
-    var stats = fs.lstatSync(fpath);
-    if (stats.isDirectory()) {
-      _dirs.push(getTreeItem(fpath));
-    } else {
-      _files.push(getTreeItem(fpath));
-    }
-  }
-
-  return _dirs.concat(_files);
-}
-
-app.get('/', function(req, res) {
-
-  var model = getTreeItem(coreDir);
-
-  res.render('tree', {
-    model: model,
-    page_title: model.title
-  });
-});
-
-app.get('/tree-inner', function(req, res) {
-  var fullPath = coreParentDir + req.query.subpath;
-  var result = getTreeList(fullPath);
-
-  res.render('tree-inner', {
-    list: result,
-    error: result === false
-  });
-});
-
-app.get('/raw', function(req, res) {
-  var fullPath = coreParentDir + req.query.subpath;
-
-  if (!fs.existsSync(fullPath)) {
-    res.send(404, "404 Error");
-    return;
-  }
-
-  var stats = fs.lstatSync(fullPath);
-  if (stats.isDirectory()) {
-    res.send(500, "500 Error");
-    return;
-  }
-
-  var mime = require('mime');
-  var contentType = mime.lookup(fullPath);
-
-  if (contentType == 'application/octet-stream' || contentType == 'application/x-sh') {
-    contentType = 'text/plain';
-    res.setHeader('Content-Type', contentType);
-
-    fs.readFile(fullPath, 'utf8', function(err, data) {
-      if (err) {
-        res.send(500, "500 Error");
-        return;
+if (process.argv.length > 2) {
+  for (var i = 2; i < process.argv.length; i++) {
+    var item = process.argv[i];
+    var regex  = /^--(.+)=(.+)$/;
+    
+    if (item.match(regex)) {
+      var match = regex.exec(item);
+      if (settings[match[1]]) {
+        settings[match[1]] = match[2];
       }
-
-      res.send(data);
-    });
-  } else {
-    res.sendfile(fullPath);
-  }
-
-});
-
-app.post('/create-dir', function(req, res) {
-  var fullPath = coreParentDir + req.body.subpath;
-
-  if (!fs.existsSync(fullPath)) {
-    res.send(404, "404 Error. " + fullPath);
-    return;
-  }
-
-  fullPath += path.sep + req.body.name;
-  fs.mkdirSync(fullPath);
-
-  res.send('Directory ' + fullPath + ' created');
-});
-
-app.post('/create-file', function(req, res) {
-  var fullPath = coreParentDir + req.body.subpath;
-
-  if (!fs.existsSync(fullPath)) {
-    res.send(404, "404 Error. " + fullPath);
-    return;
-  }
-
-  fullPath += path.sep + req.body.name;
-  fs.openSync(fullPath, 'w');
-
-  res.send('File ' + fullPath + ' created');
-});
-
-
-var EXTS = require('./modes.js');
-
-app.get('/editor', function(req, res) {
-  var fullPath = coreParentDir + req.query.subpath;
-
-  if (!fs.existsSync(fullPath)) {
-    res.send(404, "404 Error");
-    return;
-  }
-
-  var model = getTreeItem(fullPath);
-
-  var ext = path.extname(fullPath);
-  var mode = 'text';
-  if (EXTS[ext]) {
-    mode = EXTS[ext];
-  }
-
-  fs.readFile(fullPath, 'utf8', function(err, data) {
-    if (err) {
-      res.send(500, "500 Error");
-      return;
     }
-
-    res.render('editor', {
-      model: model,
-      page_title: model.title,
-      data: data,
-      mode: mode,
-      subpath: req.query.subpath
-    });
-  });
-});
-
-app.post('/delete-file', function(req, res) {
-  var fullPath = coreParentDir + req.body.subpath;
-
-  if (!fs.existsSync(fullPath)) {
-    res.send(404, "404 Error");
-    return;
   }
+}
 
-  var stats = fs.lstatSync(fullPath);
-  if (stats.isDirectory()) {
-    try {
-      fs.rmdirSync(fullPath);
-    } catch (err) {}
-  } else {
-    fs.unlinkSync(fullPath);
-  }
-
-  if (!fs.existsSync(fullPath)) {
-    res.send("OK");
-  } else {
-    res.send(500, "Failed");
-  }
-});
-
-
-app.post('/save-file', function(req, res) {
-  var fullPath = coreParentDir + req.body.subpath;
-
-  if (!fs.existsSync(fullPath)) {
-    res.send(404, "404 Error");
-    return;
-  }
-
-  var data = req.body.data;
-
-  fs.writeFile(fullPath, data, function(err) {
-    if (err) {
-      res.send(500, 'Failed');
-    } else {
-      res.send("OK");
-    }
-  });
-});
-
-var port = 3000;
-app.listen(port, function(err) {
+app.listen(settings.port, function(err) {
   if (!err) {
-    console.log('Zenturio Editor started at port ' + port);
+    console.log('Zenturio Editor started at port ' + settings.port);
   }
 });

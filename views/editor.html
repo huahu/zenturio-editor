@@ -4,12 +4,16 @@
 
 <div class="row wide">
   <div class="columns large-12 panel alternative">
+    <div style="position: absolute; top: 15px; right: 20px;">
+      <a href="/search"  target="_blank"><i class="fi-page-search"></i> Search</a>  
+    </div>
+    
     <h2 style="display: inline;">
       <i class="fi-page"></i> <span data-tooltip title="{{model.subpath}}">{{model.title}}</span>
     </h2>
 
     <span id="curMode"></span>
-    <small><a href="#" onclick="showChangeMode();">change</a></small>
+    <small><a href="#" onclick="showChangeMode(); return false;">change</a></small>
     <script> $(function(){ modeLabel('{{mode}}'); }); </script>
 
     <span class="info-text" id="savedLabel">File was saved...</span>
@@ -23,7 +27,7 @@
 <div id="editor">{{data}}</div>
 
 <script>
-  SUBPATH = '{{subpath}}';
+  SUBPATH = '{{subpathUrl}}';
   {% if mode %}
     startMode = '{{mode}}';
   {% endif %}
