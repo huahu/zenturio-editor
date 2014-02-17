@@ -3,7 +3,10 @@
 {% block content %}
 <div class="row wide">
   <div class="columns large-12 panel alternative">
-    <a style="position: absolute; top: 20px; right: 20px;" onclick="toggleInfoBlock();"><i class="fi-monitor"></i> About</a>
+    <div style="position: absolute; top: 20px; right: 20px;">
+      <a style="margin-right: 20px;" onclick="toggleInfoBlock();"><i class="fi-monitor"></i> About</a>
+      <a href="/search"  target="_blank"><i class="fi-page-search"></i> Search</a>  
+    </div>
     <h2>
       <img src="/img/small-logo.png" id="proj-logo-small"/> <span data-tooltip title="{{model.subpath}}">{{model.title}}</span>
     </h2>

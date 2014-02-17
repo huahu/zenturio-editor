@@ -116,3 +116,13 @@ h5.subheader {
 #proj-logo-small {
   height: 45px;
 }
+
+.search-res {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  li.panel:hover {
+    background-color: #333;
+  }
+}

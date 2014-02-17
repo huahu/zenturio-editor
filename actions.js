@@ -213,5 +213,11 @@ module.exports = function(app, _coreDir, _coreParentDir) {
       }
     });
   });
+  
+  app.get('/search', function(req, res) {
+    res.render('search', {
+      page_title: "Searching"
+    });
+  });
 
 };

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="row wide">
+  <div class="columns large-12 panel alternative">
+    <h2 style="display: inline;">
+      <img src="/img/small-logo.png" id="proj-logo-small"/> <span>Searching</span>
+    </h2>
+    
+    <input type="text" style="width: 50%; display: inline; margin-left: 30px;" placeholder="Input query here"/>
+  </div>
+</div>
+
+
+<div class="row wide">
+  <div class="columns large-8 large-offset-2">
+    <div class="panel">
+      <h2>Results</h2>
+      <ul style="list-style: none; padding: 0; margin: 0;" class="search-res">
+        <li>
+          <div class="panel"><h3>file-name.ext</h3><span>/var/full-path/to/file</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
