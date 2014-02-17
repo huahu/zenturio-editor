@@ -27,6 +27,7 @@ Then open `http://IP-or-hostname:3000/` in browser.
 3. More Shortcuts
 4. Improved settings (port, ip filters)
 5. Improved security (http auth, cross-project saving)
+6. fix icons in tree view, fix cursor in editor
 6. ???
   
 
